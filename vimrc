@@ -98,6 +98,7 @@ set wildoptions=pum
 " map
 noremap <silent><Leader>m :Man <cword><CR>
 noremap <space> z
+noremap <esc><esc> <esc>:nohls<CR>
 
 " presetting autocmd
 augroup pre_autocmd
@@ -110,8 +111,32 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-noremap <silent><F2> :NERDTreeMirror<CR>
-noremap <silent><F3> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-N> :NERDTreeToggle<CR>
+nnoremap <C-M> :NERDTreeMirror<CR>
+nnoremap <C-L> :NERDTreeFind<CR>
+augroup nerdtree_settings
+    " start NERDTree. If a file is specified, move the cursor to its window.
+    " autocmd StdinReadPre * let s:std_in=1
+    " autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+    " start NERDTree when Vim starts with a directory argument.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+    " exit Vim if NERDTree is the only window remaining in the only tab.
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+    " close the tab if NERDTree is the only window remaining in it.
+    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+        \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+    " open the existing NERDTree on each new tab.
+    " autocmd BufEnter * if exists('b:NERDTree') | silent NERDTreeMirror | endif
+augroup end
 let g:NERDTreeWinPos='left'
 
 " 2. undotree
@@ -219,7 +244,7 @@ let g:ycm_min_num_identifier_candidate_chars=0                      " 候选标�
 let g:ycm_collect_identifiers_from_comments_and_strings=1           " 从注释和字符串中提取标识符用于补全
 let g:ycm_semantic_triggers={'c,cpp,python,go,rust': ['re!\w{2}'],} " 开启语法补全，输入两个字符时开启
 let g:ycm_confirm_extra_conf=0                                      " 确认查找到的额外配置文件，不确认
-let g:ycm_goto_buffer_command='split-or-existing-window'            " 设置跳转的新窗口
+let g:ycm_goto_buffer_command='same-buffer'                         " 设置跳转的新窗口
 " 若当前文件夹下没有配置文件，则加载全局配置文件
 " let g:ycm_conf_path = findfile('.ycm_extra_conf.py', '.;')
 " let g:ycm_global_ycm_extra_conf=g:ycm_conf_path
