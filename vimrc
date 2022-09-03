@@ -98,7 +98,7 @@ set wildoptions=pum
 " map
 noremap <silent><Leader>m :Man <cword><CR>
 noremap <space> z
-noremap <esc><esc> <esc>:nohls<CR>
+noremap <silent><esc><esc> <esc>:nohls<CR>
 
 " presetting autocmd
 augroup pre_autocmd
@@ -220,8 +220,9 @@ nnoremap <silent><C-K> <Plug>(ale_previous_wrap)
 nnoremap <silent><C-J> <Plug>(ale_next_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
-let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_save=1
 let g:ale_lint_on_enter=1
+let g:ale_lint_on_insert_leave=1
 let g:ale_sign_error='->'
 let g:ale_sign_warning='!'
 let g:ale_linters_explicit=1    " 显示指定文件类型使用的linter
