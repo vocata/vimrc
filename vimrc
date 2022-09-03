@@ -137,6 +137,7 @@ augroup nerdtree_settings
     " autocmd BufEnter * if exists('b:NERDTree') | silent NERDTreeMirror | endif
 augroup end
 let g:NERDTreeWinPos='left'
+" let g:NERDTreeMinimalMenu=1
 
 " 2. undotree
 noremap <silent><F4> :UndotreeToggle<CR>
@@ -285,7 +286,7 @@ function! SetCompileOptions()
         autocmd FileType sh noremap <silent><Leader>r :w<CR>:AsyncRun -raw zsh $VIM_FILEPATH<CR>
         autocmd FileType go noremap <silent><Leader>b :w<CR>:AsyncRun go build .<CR>
         autocmd FileType go noremap <silent><Leader>r :w<CR>:AsyncRun go run .<CR>
-        autocmd FileType go noremap <silent><Leader>t :w<CR>:AsyncRun go test . -v -cover -count=1<CR>
+        autocmd FileType go noremap <silent><Leader>ta :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1<CR>
         autocmd FileType go noremap <silent><Leader>tf :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
     augroup end
 endfunction
