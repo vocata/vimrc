@@ -204,8 +204,8 @@ let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh
 " 14. vim-smooth-scroll
 noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
-noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
+" noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, )<CR>
+" noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 " 15. vim-easymotion
 " TODO
