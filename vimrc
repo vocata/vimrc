@@ -111,10 +111,9 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-N> :NERDTreeToggle<CR>
-nnoremap <C-M> :NERDTreeMirror<CR>
-nnoremap <C-L> :NERDTreeFind<CR>
+nnoremap <silent><Leader>n :NERDTreeFocus<CR>
+nnoremap <silent><C-N> :NERDTreeToggle<CR>
+nnoremap <silent><C-L> :NERDTreeFind<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
@@ -214,6 +213,7 @@ noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 " 16. vim-signify
 noremap <silent><Leader>d :SignifyHunkDiff<CR>
 noremap <silent><Leader>u :SignifyHunkUndo<CR>
+let g:signify_sign_change='#'
 
 " 17. ale
 nnoremap <silent><C-K> <Plug>(ale_previous_wrap)
