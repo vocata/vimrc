@@ -111,9 +111,9 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <silent><Leader>n :NERDTreeFocus<CR>
-nnoremap <silent><C-N> :NERDTreeToggle<CR>
 nnoremap <silent><C-L> :NERDTreeFind<CR>
+nnoremap <silent><C-P> :NERDTreeFocus<CR>
+nnoremap <silent><C-N> :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
