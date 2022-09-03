@@ -96,8 +96,8 @@ set wildoptions=pum
 " function
 
 " map
+noremap <space> za
 noremap <silent><Leader>m :Man <cword><CR>
-noremap <space> z
 noremap <silent><esc><esc> <esc>:nohls<CR>
 
 " presetting autocmd
