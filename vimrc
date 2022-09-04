@@ -98,7 +98,7 @@ set wildoptions=pum
 
 " map
 noremap <space> za
-noremap <silent><Leader>m :Man <cword><CR>
+noremap <silent><leader>m :Man <cword><CR>
 noremap <silent><esc><esc> <esc>:nohls<CR>
 noremap <silent><C-H> :wincmd h<CR>
 noremap <silent><C-J> :wincmd j<CR>
@@ -116,9 +116,9 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <silent><Leader>l :NERDTreeFind<CR>
-nnoremap <silent><Leader>p :NERDTreeFocus<CR>
-nnoremap <silent><Leader>n :NERDTreeToggle<CR>
+nnoremap <silent><leader>l :NERDTreeFind<CR>
+nnoremap <silent><leader>p :NERDTreeFocus<CR>
+nnoremap <silent><leader>n :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
@@ -169,10 +169,10 @@ augroup end
 " TODO
 
 " 8. LeaderF
-noremap <silent><Leader>lf :LeaderfFile<CR>
-noremap <silent><Leader>lb :LeaderfBuffer<CR>
-noremap <silent><Leader>lt :LeaderfFunction<CR>
-noremap <silent><Leader>ll :LeaderfLine<CR>
+noremap <silent><leader>lf :LeaderfFile<CR>
+noremap <silent><leader>lb :LeaderfBuffer<CR>
+noremap <silent><leader>lt :LeaderfFunction<CR>
+noremap <silent><leader>ll :LeaderfLine<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_ShowDevIcons=0
@@ -190,8 +190,8 @@ augroup end
 let g:delimitMate_expand_cr=1
 
 " 11. vim-easy-align
-xnoremap ga <Plug>(EasyAlign)
-nnoremap ga <Plug>(EasyAlign)
+xnoremap ga <plug>(EasyAlign)
+nnoremap ga <plug>(EasyAlign)
 
 " 12. vim-airline
 " let g:airline_theme='luna'
@@ -217,13 +217,15 @@ noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 " TODO
 
 " 16. vim-signify
-noremap <silent><Leader>d :SignifyHunkDiff<CR>
-noremap <silent><Leader>u :SignifyHunkUndo<CR>
+noremap <silent><leader>d :SignifyHunkDiff<CR>
+noremap <silent><leader>u :SignifyHunkUndo<CR>
+nnoremap <silent><leader>gj <plug>(signify-next-hunk)
+nnoremap <silent><leader>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
 
 " 17. ale
-nnoremap <silent>[n <Plug>(ale_previous_wrap)
-nnoremap <silent>]n <Plug>(ale_next_wrap)
+nnoremap <silent><leader>gp <plug>(ale_previous_wrap)
+nnoremap <silent><leader>gn <plug>(ale_next_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_save=1
@@ -238,8 +240,8 @@ let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 
 " 18. YouCompleteMe
-noremap <silent><Leader>] :rightbelow vertical YcmCompleter GoTo<CR>
-noremap <silent><Leader>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+noremap <silent><leader>] :rightbelow vertical YcmCompleter GoTo<CR>
+noremap <silent><leader>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
 set completeopt=menu,menuone
 let g:ycm_enable_semantic_highlighting=1                            " 打开语法高亮
 let g:ycm_enable_inlay_hints=0                                      " 关闭内嵌提示
@@ -279,20 +281,20 @@ let g:quickfix_height=15    " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 let g:asyncrun_bell=0   " 提示音开
 function! SetCompileOptions()
-    noremap <silent><Leader>c :AsyncStop!<CR>
-    noremap <silent><Leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
+    noremap <silent><leader>c :AsyncStop!<CR>
+    noremap <silent><leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
         autocmd!
-        autocmd FileType c,cpp noremap <silent><Leader>M :w<CR>:AsyncRun make<CR>
-        autocmd FileType c noremap <silent><Leader>b :w<CR>:AsyncRun clang -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><Leader>b :w<CR>:AsyncRun clang++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c,cpp noremap <silent><Leader>r :AsyncRun -raw -cwd=$VIM_FILEDIR $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python noremap <silent><Leader>r :w<CR>:AsyncRun -raw python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh noremap <silent><Leader>r :w<CR>:AsyncRun -raw zsh $VIM_FILEPATH<CR>
-        autocmd FileType go noremap <silent><Leader>b :w<CR>:AsyncRun go build .<CR>
-        autocmd FileType go noremap <silent><Leader>r :w<CR>:AsyncRun go run .<CR>
-        autocmd FileType go noremap <silent><Leader>ta :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><Leader>tf :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType c,cpp noremap <silent><leader>M :w<CR>:AsyncRun make<CR>
+        autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun clang -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun clang++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c,cpp noremap <silent><leader>r :AsyncRun -raw -cwd=$VIM_FILEDIR $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType python noremap <silent><leader>r :w<CR>:AsyncRun -raw python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh noremap <silent><leader>r :w<CR>:AsyncRun -raw zsh $VIM_FILEPATH<CR>
+        autocmd FileType go noremap <silent><leader>b :w<CR>:AsyncRun go build .<CR>
+        autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun go run .<CR>
+        autocmd FileType go noremap <silent><leader>ta :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go noremap <silent><leader>tf :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
     augroup end
 endfunction
 call SetCompileOptions()
