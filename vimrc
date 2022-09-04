@@ -46,6 +46,7 @@ Plug 'google/vim-searchindex'
 Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Theme
 Plug 'flazz/vim-colorschemes'
@@ -99,6 +100,10 @@ set wildoptions=pum
 noremap <space> za
 noremap <silent><Leader>m :Man <cword><CR>
 noremap <silent><esc><esc> <esc>:nohls<CR>
+noremap <silent><C-H> :wincmd h<CR>
+noremap <silent><C-J> :wincmd j<CR>
+noremap <silent><C-k> :wincmd k<CR>
+noremap <silent><C-L> :wincmd l<CR>
 
 " presetting autocmd
 augroup pre_autocmd
@@ -111,9 +116,9 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <silent><C-L> :NERDTreeFind<CR>
-nnoremap <silent><C-P> :NERDTreeFocus<CR>
-nnoremap <silent><C-N> :NERDTreeToggle<CR>
+nnoremap <silent><Leader>l :NERDTreeFind<CR>
+nnoremap <silent><Leader>p :NERDTreeFocus<CR>
+nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
@@ -217,8 +222,8 @@ noremap <silent><Leader>u :SignifyHunkUndo<CR>
 let g:signify_sign_change='#'
 
 " 17. ale
-nnoremap <silent><C-K> <Plug>(ale_previous_wrap)
-nnoremap <silent><C-J> <Plug>(ale_next_wrap)
+nnoremap <silent>[n <Plug>(ale_previous_wrap)
+nnoremap <silent>]n <Plug>(ale_next_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_save=1
@@ -332,6 +337,9 @@ augroup end
 
 " 29. vim-searchlight
 highlight link Searchlight Incsearch
+
+" 30. nerdtree-git-plugin
+" TODO a plugin of NERDTree showing git status flags
 
 
 
