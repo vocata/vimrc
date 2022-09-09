@@ -15,9 +15,9 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins
 " for example: Plug 'your plugins'
 
-Plug 'tpope/vim-sensible'
+" Plug 'tpope/vim-sensible'
 Plug 'yianwillis/vimcdoc'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree',
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'tpope/vim-commentary',
 Plug 'tpope/vim-surround',
@@ -52,7 +52,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'flazz/vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim', {'as': 'dracula'}
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()
@@ -64,8 +63,7 @@ runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 " colorscheme
 " colorscheme space-vim-dark
 " colorscheme molokai
-" colorscheme monokai-phoenix
-colorscheme dracula
+colorscheme monokai-phoenix
 
 " indent
 set expandtab
@@ -196,8 +194,7 @@ nnoremap ga <plug>(EasyAlign)
 " 12. vim-airline
 " let g:airline_theme='luna'
 " let g:airline_theme='dark'
-" let g:airline_theme='molokai'
-let g:airline_theme='dracula'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts=0
 let g:airline#extensions#tabline#enabled=1
 
@@ -224,8 +221,8 @@ nnoremap <silent><leader>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
 
 " 17. ale
-nnoremap <silent><leader>gp <plug>(ale_previous_wrap)
-nnoremap <silent><leader>gn <plug>(ale_next_wrap)
+nnoremap <silent><leader>wj <plug>(ale_next_wrap)
+nnoremap <silent><leader>wk <plug>(ale_previous_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_save=1
