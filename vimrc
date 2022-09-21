@@ -47,6 +47,9 @@ Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+
 
 " Theme
 Plug 'flazz/vim-colorschemes'
@@ -144,7 +147,7 @@ let g:NERDTreeWinPos='left'
 " let g:NERDTreeMinimalMenu=1
 
 " 2. undotree
-noremap <silent><F4> :UndotreeToggle<CR>
+noremap <silent><leader>ud :UndotreeToggle<CR>
 let g:undotree_WindowLayout=3
 let g:undotree_SetFocusWhenToggle=1
 
@@ -216,8 +219,8 @@ noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 " TODO
 
 " 16. vim-signify
-noremap <silent><leader>d :SignifyHunkDiff<CR>
-noremap <silent><leader>u :SignifyHunkUndo<CR>
+noremap <silent><leader>gd :SignifyHunkDiff<CR>
+noremap <silent><leader>gu :SignifyHunkUndo<CR>
 nnoremap <silent><leader>gj <plug>(signify-next-hunk)
 nnoremap <silent><leader>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
@@ -302,7 +305,7 @@ call SetCompileOptions()
 let g:echodoc_enable_at_startup=1
 
 " 22. todo-vim
-noremap <silent><F5> :TODOToggle<CR>
+noremap <silent><leader>td :TODOToggle<CR>
 
 " 23. git-blamer
 nnoremap gb :call gitblame#echo()<CR>
@@ -344,6 +347,11 @@ highlight link Searchlight Incsearch
 
 " 31. vim-devicons
 " TODO support icons of file
+
+" 32 markdown-preview
+" TODO preview markdown in browser
+noremap <silent><leader>mp <plug>MarkdownPreview
+noremap <silent><leader>mc <plug>StopMarkdownPreview
 
 
 
