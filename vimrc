@@ -52,6 +52,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'flazz/vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()
@@ -168,9 +169,10 @@ augroup end
 
 " 8. LeaderF
 noremap <silent><leader>lf :LeaderfFile<CR>
+noremap <silent><leader>ll :LeaderfLine<CR>
 noremap <silent><leader>lb :LeaderfBuffer<CR>
 noremap <silent><leader>lt :LeaderfFunction<CR>
-noremap <silent><leader>ll :LeaderfLine<CR>
+noremap <silent><leader>lg :LeaderfTag<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_ShowDevIcons=0
@@ -195,7 +197,7 @@ nnoremap ga <plug>(EasyAlign)
 " let g:airline_theme='luna'
 " let g:airline_theme='dark'
 let g:airline_theme='molokai'
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
 " 13. indentLine
@@ -288,10 +290,10 @@ function! SetCompileOptions()
         autocmd FileType c,cpp noremap <silent><leader>r :AsyncRun -raw -cwd=$VIM_FILEDIR $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType python noremap <silent><leader>r :w<CR>:AsyncRun -raw python3 $VIM_FILEPATH<CR>
         autocmd FileType sh noremap <silent><leader>r :w<CR>:AsyncRun -raw zsh $VIM_FILEPATH<CR>
+        autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun -raw go run .<CR>
         autocmd FileType go noremap <silent><leader>b :w<CR>:AsyncRun go build .<CR>
-        autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun go run .<CR>
         autocmd FileType go noremap <silent><leader>ta :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><leader>tf :w<CR>:AsyncRun go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType go noremap <silent><leader>tf :w<CR>:AsyncRun  go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
     augroup end
 endfunction
 call SetCompileOptions()
@@ -339,6 +341,9 @@ highlight link Searchlight Incsearch
 
 " 30. nerdtree-git-plugin
 " TODO a plugin of NERDTree showing git status flags
+
+" 31. vim-devicons
+" TODO support icons of file
 
 
 
