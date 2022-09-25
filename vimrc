@@ -49,6 +49,7 @@ Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'preservim/vim-markdown'
 
 
 " Theme
@@ -138,7 +139,7 @@ augroup nerdtree_settings
 
     " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
     " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-        " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+    "     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
     " open the existing NERDTree on each new tab.
     " autocmd BufEnter * if exists('b:NERDTree') | silent NERDTreeMirror | endif
@@ -353,6 +354,11 @@ highlight link Searchlight Incsearch
 noremap <silent><leader>mp <plug>MarkdownPreview
 noremap <silent><leader>mc <plug>StopMarkdownPreview
 
+" 33 vim-markdown
+" set conceallevel=1
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_math=1
+let g:vim_markdown_strikethrough=1
 
 
 " " -----tips-----
