@@ -42,7 +42,7 @@ Plug 'zivyangll/git-blame.vim'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-Plug 'google/vim-searchindex'
+" Plug 'google/vim-searchindex'
 Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'PeterRincker/vim-searchlight'
@@ -50,7 +50,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'preservim/vim-markdown'
-
 
 " Theme
 Plug 'flazz/vim-colorschemes'
@@ -179,13 +178,15 @@ noremap <silent><leader>lt :LeaderfFunction<CR>
 noremap <silent><leader>lg :LeaderfTag<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
-let g:Lf_ShowDevIcons=0
+let g:Lf_ShowDevIcons=1
 let g:Lf_ShowHidden=1
 let g:Lf_WindowHeight=0.3
-let g:Lf_CacheDirectory=expand('$HOME/.cache/LfCache')
-let g:Lf_StlSeparator={'left': '►', 'right': '◄', 'font': ''}
+" let g:Lf_StlSeparator={'left': '►', 'right': '◄', 'font': ''}
 " let g:Lf_StlSeparator={'left': '', 'right': ''}
-let g:Lf_StlColorscheme='one'
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+" let g:Lf_StlColorscheme='one'
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_CacheDirectory=expand('$HOME/.cache/LfCache')
 
 " 9. delimitMate
 augroup delimit_settings
@@ -245,6 +246,8 @@ let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 " 18. YouCompleteMe
 noremap <silent><leader>] :rightbelow vertical YcmCompleter GoTo<CR>
 noremap <silent><leader>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+" noremap <silent><leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+" noremap <silent><leader>yfd <Plug>(YCMFindSymbolInDocument)
 set completeopt=menu,menuone
 let g:ycm_enable_semantic_highlighting=1                            " 打开语法高亮
 let g:ycm_enable_inlay_hints=0                                      " 关闭内嵌提示
@@ -349,12 +352,15 @@ highlight link Searchlight Incsearch
 " 31. vim-devicons
 " TODO support icons of file
 
-" 32 markdown-preview
+" 32. mathjax-support-for-mkdp
+" TODO required by markdown-preview
+
+" 33 markdown-preview
 " TODO preview markdown in browser
 noremap <silent><leader>mp <plug>MarkdownPreview
 noremap <silent><leader>mc <plug>StopMarkdownPreview
 
-" 33 vim-markdown
+" 34 vim-markdown
 " set conceallevel=1
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_math=1
