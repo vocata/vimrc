@@ -47,8 +47,7 @@ Plug 'junegunn/fzf', {'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'preservim/vim-markdown'
 
 " Theme
@@ -353,18 +352,13 @@ highlight link Searchlight Incsearch
 " 31. vim-devicons
 " TODO support icons of file
 
-" 32. mathjax-support-for-mkdp
-" TODO required by markdown-preview
+" 32 markdown-preview
+noremap <silent><leader>mp <plug>MarkdownPreviewToggle
 
-" 33 markdown-preview
-" TODO preview markdown in browser
-noremap <silent><leader>mp <plug>MarkdownPreview
-noremap <silent><leader>mc <plug>StopMarkdownPreview
-
-" 34 vim-markdown
-" set conceallevel=1
+" 33 vim-markdown
+set conceallevel=0
 let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_math=1
+let g:vim_markdown_math=0
 let g:vim_markdown_strikethrough=1
 
 
