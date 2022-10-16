@@ -28,7 +28,7 @@ Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim', 'asm', 'sh', 'zsh', 'make', 'cmake',]}
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
-Plug 'Yggdroot/indentLine'      "不能加后续选项，否则有bug
+" Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
@@ -72,9 +72,9 @@ colorscheme monokai-phoenix
 set expandtab
 set smarttab
 set noshowmode
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
 
 " fold
 set foldenable
@@ -213,8 +213,8 @@ let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh
 " 14. vim-smooth-scroll
 noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-" noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, )<CR>
-" noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
+noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
+noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 " 15. vim-easymotion
 " TODO
@@ -291,10 +291,10 @@ function! SetCompileOptions()
     noremap <silent><leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
         autocmd!
-        autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun -save=1 clang -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun -save=1 clang++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c noremap <silent><leader>r :AsyncRun -raw clang -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw clang++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c noremap <silent><leader>r :AsyncRun -raw gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType python noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
         autocmd FileType sh noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw zsh $VIM_FILEPATH<CR>
         autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw go run .<CR>
