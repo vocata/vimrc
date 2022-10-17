@@ -43,8 +43,8 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 " Plug 'google/vim-searchindex'
-Plug 'junegunn/fzf', {'do': {->fzf#install()}}
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', {'do': {->fzf#install()}}
+" Plug 'junegunn/fzf.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -70,11 +70,11 @@ colorscheme monokai-phoenix
 
 " indent
 set expandtab
-set smarttab
+set smarttab           " 默认使用智能缩进
 set noshowmode
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
+set tabstop=4          " 输入tab时表示的空格数
+set shiftwidth=4       " 自动缩进时使用的空白数目，例如>>操作。设置为0时，使用tabstop的值
+set softtabstop=4      " 用于文本展示，例如tabstop=8，如果设置softtabstop=4，展示的tab也是4个空格的宽度
 
 " fold
 set foldenable
@@ -106,11 +106,10 @@ noremap <silent><C-J> :wincmd j<CR>
 noremap <silent><C-k> :wincmd k<CR>
 noremap <silent><C-L> :wincmd l<CR>
 
-" presetting autocmd
-augroup pre_autocmd
-    autocmd!
-    autocmd FileType * set formatoptions-=cro  " 关闭自动注释
+" presetting autocmd groups
+augroup filetype_settings
     autocmd BufRead,BufNewFile *.asm,*.s,*.S set filetype=asm
+    autocmd FileType * set formatoptions-=cro  " 关闭自动注释
 augroup end
 
 
@@ -290,7 +289,6 @@ function! SetCompileOptions()
     noremap <silent><leader>M :w<CR>:AsyncRun -save=2 make<CR>
     noremap <silent><leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
-        autocmd!
         autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType c noremap <silent><leader>r :AsyncRun -raw gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
@@ -318,6 +316,7 @@ nnoremap gb :call gitblame#echo()<CR>
 augroup autoformat_settings
     " autocmd FileType bzl AutoFormatBuffer buildifier
     autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+    autocmd FileType c,cpp,proto,javascript,arduino Glaive codefmt clang_format_style='{BasedOnStyle: LLVM, IndentWidth: 4}'
     " autocmd FileType dart AutoFormatBuffer dartfmt
     autocmd FileType go AutoFormatBuffer gofmt
     " autocmd FileType gn AutoFormatBuffer gn
@@ -329,6 +328,7 @@ augroup autoformat_settings
     " autocmd FileType vue AutoFormatBuffer prettier
     " autocmd FileType swift AutoFormatBuffer swift-format
     autocmd FileType sh AutoFormatBuffer shfmt
+    autocmd FileType sh Glaive codefmt shfmt_options=`['-i', '4', '-sr', '-ci']`
 augroup end
 
 " 25. vim-glaive
