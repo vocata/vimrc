@@ -291,8 +291,8 @@ function! SetCompileOptions()
     augroup compile_settings
         autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c noremap <silent><leader>r :AsyncRun -raw gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c noremap <silent><leader>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType python noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
         autocmd FileType sh noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw zsh $VIM_FILEPATH<CR>
         autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw go run .<CR>
@@ -316,7 +316,7 @@ nnoremap gb :call gitblame#echo()<CR>
 augroup autoformat_settings
     " autocmd FileType bzl AutoFormatBuffer buildifier
     autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-    autocmd FileType c,cpp,proto,javascript,arduino Glaive codefmt clang_format_style='{BasedOnStyle: LLVM, IndentWidth: 4}'
+    autocmd FileType c,cpp,proto,javascript,arduino Glaive codefmt clang_format_style='{BasedOnStyle: LLVM, IndentWidth: 4, AllowShortFunctionsOnASingleLine: Inline, ColumnLimit: 128}'
     " autocmd FileType dart AutoFormatBuffer dartfmt
     autocmd FileType go AutoFormatBuffer gofmt
     " autocmd FileType gn AutoFormatBuffer gn
