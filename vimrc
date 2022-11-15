@@ -286,19 +286,22 @@ let g:asyncrun_open=g:quickfix_height
 let g:asyncrun_bell=0   " 提示音开
 function! SetCompileOptions()
     noremap <silent><leader>c :AsyncStop!<CR>
-    noremap <silent><leader>M :w<CR>:AsyncRun -save=2 make<CR>
+    noremap <silent><leader>M :AsyncRun -save=2 make<CR>
     noremap <silent><leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
-        autocmd FileType c noremap <silent><leader>b :w<CR>:AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>b :w<CR>:AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c noremap <silent><leader>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><leader>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType c noremap <silent><leader>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw zsh $VIM_FILEPATH<CR>
-        autocmd FileType go noremap <silent><leader>r :w<CR>:AsyncRun -save=1 -raw go run .<CR>
-        autocmd FileType go noremap <silent><leader>b :w<CR>:AsyncRun -save=1 go build .<CR>
-        autocmd FileType go noremap <silent><leader>ta :w<CR>:AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><leader>tf :w<CR>:AsyncRun go -save=1 test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType python noremap <silent><leader>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh noremap <silent><leader>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
+        autocmd FileType go noremap <silent><leader>r :AsyncRun -raw -save=1 go run .<CR>
+        autocmd FileType go noremap <silent><leader>b :AsyncRun -save=1 go build .<CR>
+        autocmd FileType go noremap <silent><leader>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go noremap <silent><leader>tf :AsyncRun go -save=1 test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType rust noremap <silent><leader>b :AsyncRun -save=1 cargo build<CR>
+        autocmd FileType rust noremap <silent><leader>c :AsyncRun -save=1 cargo check<CR>
+        autocmd FileType rust noremap <silent><leader>r :AsyncRun -raw -save=1 cargo run<CR>
     augroup end
 endfunction
 call SetCompileOptions()
