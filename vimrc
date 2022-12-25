@@ -298,7 +298,7 @@ function! SetCompileOptions()
         autocmd FileType go noremap <silent><leader>r :AsyncRun -raw -save=1 go run .<CR>
         autocmd FileType go noremap <silent><leader>b :AsyncRun -save=1 go build .<CR>
         autocmd FileType go noremap <silent><leader>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><leader>tf :AsyncRun go -save=1 test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType go noremap <silent><leader>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
         autocmd FileType rust noremap <silent><leader>b :AsyncRun -save=1 cargo build<CR>
         autocmd FileType rust noremap <silent><leader>c :AsyncRun -save=1 cargo check<CR>
         autocmd FileType rust noremap <silent><leader>r :AsyncRun -raw -save=1 cargo run<CR>
