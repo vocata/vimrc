@@ -34,7 +34,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
 Plug 'w0rp/ale',
 Plug 'Valloric/YouCompleteMe'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Dimercel/todo-vim'
@@ -169,11 +169,17 @@ augroup end
 " TODO
 
 " 8. LeaderF
-noremap <silent><leader>lf :LeaderfFile<CR>
-noremap <silent><leader>ll :LeaderfLine<CR>
-noremap <silent><leader>lb :LeaderfBuffer<CR>
-noremap <silent><leader>lt :LeaderfFunction<CR>
-noremap <silent><leader>lg :LeaderfTag<CR>
+noremap <silent><leader>lf :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <silent><leader>lt :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <silent><leader>ll :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <silent><leader>lb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <silent><leader>lm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <silent><leader>lh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
+noremap <silent><leader>ls :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
+noremap <silent><leader>lc :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
+noremap <silent><leader>lw :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
+noremap <silent><leader>la :<C-U><C-R>=printf("Leaderf rg --case-insensitive %s", "")<CR><CR>
+noremap <silent><leader>lu :<C-U>Leaderf --recall<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_ShowDevIcons=1
@@ -263,22 +269,22 @@ let g:ycm_goto_buffer_command='same-buffer'                         " 设置跳�
 " let g:ycm_global_ycm_extra_conf=g:ycm_conf_path
 
 " 19. vim-gutentags
-" set tags=./.tags;,.tags
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile='.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags=expand('$HOME/.cache/tags')
-let g:gutentags_cache_dir=s:vim_tags
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
-endif
+" " set tags=./.tags;,.tags
+" " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+" let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
+" " 所生成的数据文件的名称
+" let g:gutentags_ctags_tagfile='.tags'
+" " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+" let s:vim_tags=expand('$HOME/.cache/tags')
+" let g:gutentags_cache_dir=s:vim_tags
+" " 配置 ctags 的参数
+" let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
+" let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
+" let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
+" " 检测 ~/.cache/tags 不存在就新建
+" if !isdirectory(s:vim_tags)
+"     silent! call mkdir(s:vim_tags, 'p')
+" endif
 
 " 20. asyncrun
 let g:quickfix_height=15    " quickfix窗口的高度
