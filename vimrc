@@ -48,7 +48,7 @@ Plug 'google/vim-glaive'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'preservim/vim-markdown'
+Plug 'preservim/vim-markdown', {'for': ['markdown']}
 
 " Theme
 Plug 'flazz/vim-colorschemes'
@@ -98,8 +98,8 @@ set wildoptions=pum
 " function
 
 " map
-noremap <space> za
-noremap <silent><leader>m :Man <cword><CR>
+noremap <space><space> za
+noremap <silent><space>m :Man <cword><CR>
 noremap <silent><esc><esc> <esc>:nohls<CR>
 noremap <silent><C-H> :wincmd h<CR>
 noremap <silent><C-J> :wincmd j<CR>
@@ -116,9 +116,9 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <silent><leader>l :NERDTreeFind<CR>
-nnoremap <silent><leader>p :NERDTreeFocus<CR>
-nnoremap <silent><leader>n :NERDTreeToggle<CR>
+nnoremap <silent><space>l :NERDTreeFind<CR>
+nnoremap <silent><space>p :NERDTreeFocus<CR>
+nnoremap <silent><space>n :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
@@ -145,7 +145,7 @@ let g:NERDTreeWinPos='left'
 " let g:NERDTreeMinimalMenu=1
 
 " 2. undotree
-noremap <silent><leader>ud :UndotreeToggle<CR>
+noremap <silent><space>ud :UndotreeToggle<CR>
 let g:undotree_WindowLayout=3
 let g:undotree_SetFocusWhenToggle=1
 
@@ -169,17 +169,17 @@ augroup end
 " TODO
 
 " 8. LeaderF
-noremap <silent><leader>lf :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-noremap <silent><leader>lt :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
-noremap <silent><leader>ll :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <silent><leader>lb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <silent><leader>lm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <silent><leader>lh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
-noremap <silent><leader>ls :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
-noremap <silent><leader>lc :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
-noremap <silent><leader>lw :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
-noremap <silent><leader>la :<C-U><C-R>=printf("Leaderf rg --case-insensitive %s", "")<CR><CR>
-noremap <silent><leader>lu :<C-U>Leaderf --recall<CR>
+noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <silent><leader>t :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <silent><leader>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <silent><leader>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <silent><leader>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <silent><leader>h :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
+noremap <silent><leader>s :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
+noremap <silent><leader>c :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
+noremap <silent><leader>w :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
+noremap <silent><leader>a :<C-U><C-R>=printf("Leaderf rg --case-insensitive %s", "")<CR><CR>
+noremap <silent><leader>u :<C-U>Leaderf --recall<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_ShowDevIcons=1
@@ -225,15 +225,15 @@ noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 " TODO
 
 " 16. vim-signify
-noremap <silent><leader>gd :SignifyHunkDiff<CR>
-noremap <silent><leader>gu :SignifyHunkUndo<CR>
-nnoremap <silent><leader>gj <plug>(signify-next-hunk)
-nnoremap <silent><leader>gk <plug>(signify-prev-hunk)
+noremap <silent><space>gd :SignifyHunkDiff<CR>
+noremap <silent><space>gu :SignifyHunkUndo<CR>
+nnoremap <silent><space>gj <plug>(signify-next-hunk)
+nnoremap <silent><space>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
 
 " 17. ale
-nnoremap <silent><leader>wj <plug>(ale_next_wrap)
-nnoremap <silent><leader>wk <plug>(ale_previous_wrap)
+nnoremap <silent><space>wj <plug>(ale_next_wrap)
+nnoremap <silent><space>wk <plug>(ale_previous_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_save=1
@@ -248,10 +248,13 @@ let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 
 " 18. YouCompleteMe
-noremap <silent><leader>] :rightbelow vertical YcmCompleter GoTo<CR>
-noremap <silent><leader>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
-" noremap <silent><leader>yfw <Plug>(YCMFindSymbolInWorkspace)
-" noremap <silent><leader>yfd <Plug>(YCMFindSymbolInDocument)
+noremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
+noremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+noremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
+noremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
+noremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
+" noremap <silent><space>yfw <Plug>(YCMFindSymbolInWorkspace)
+" noremap <silent><space>yfd <Plug>(YCMFindSymbolInDocument)
 set completeopt=menu,menuone
 let g:ycm_enable_semantic_highlighting=1                            " 打开语法高亮
 let g:ycm_enable_inlay_hints=0                                      " 关闭内嵌提示
@@ -269,45 +272,45 @@ let g:ycm_goto_buffer_command='same-buffer'                         " 设置跳�
 " let g:ycm_global_ycm_extra_conf=g:ycm_conf_path
 
 " 19. vim-gutentags
-" " set tags=./.tags;,.tags
-" " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-" let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
-" " 所生成的数据文件的名称
-" let g:gutentags_ctags_tagfile='.tags'
-" " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-" let s:vim_tags=expand('$HOME/.cache/tags')
-" let g:gutentags_cache_dir=s:vim_tags
-" " 配置 ctags 的参数
-" let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
-" let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
-" let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
-" " 检测 ~/.cache/tags 不存在就新建
-" if !isdirectory(s:vim_tags)
-"     silent! call mkdir(s:vim_tags, 'p')
-" endif
+" set tags=./.tags;,.tags
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile='.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags=expand('$HOME/.cache/tags')
+let g:gutentags_cache_dir=s:vim_tags
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " 20. asyncrun
 let g:quickfix_height=15    " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 let g:asyncrun_bell=0   " 提示音开
 function! SetCompileOptions()
-    noremap <silent><leader>c :AsyncStop!<CR>
-    noremap <silent><leader>M :AsyncRun -save=2 make<CR>
-    noremap <silent><leader>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
+    noremap <silent><space>c :AsyncStop!<CR>
+    noremap <silent><space>M :AsyncRun -save=2 make<CR>
+    noremap <silent><space>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
-        autocmd FileType c noremap <silent><leader>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c noremap <silent><leader>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><leader>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python noremap <silent><leader>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh noremap <silent><leader>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
-        autocmd FileType go noremap <silent><leader>r :AsyncRun -raw -save=1 go run .<CR>
-        autocmd FileType go noremap <silent><leader>b :AsyncRun -save=1 go build .<CR>
-        autocmd FileType go noremap <silent><leader>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><leader>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
-        autocmd FileType rust noremap <silent><leader>b :AsyncRun -save=1 cargo build<CR>
-        autocmd FileType rust noremap <silent><leader>c :AsyncRun -save=1 cargo check<CR>
-        autocmd FileType rust noremap <silent><leader>r :AsyncRun -raw -save=1 cargo run<CR>
+        autocmd FileType c noremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c noremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType python noremap <silent><space>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh noremap <silent><space>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
+        autocmd FileType go noremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
+        autocmd FileType go noremap <silent><space>b :AsyncRun -save=1 go build .<CR>
+        autocmd FileType go noremap <silent><space>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go noremap <silent><space>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType rust noremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
+        autocmd FileType rust noremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
+        autocmd FileType rust noremap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
     augroup end
 endfunction
 call SetCompileOptions()
@@ -316,7 +319,7 @@ call SetCompileOptions()
 let g:echodoc_enable_at_startup=1
 
 " 22. todo-vim
-noremap <silent><leader>td :TODOToggle<CR>
+noremap <silent><space>td :TODOToggle<CR>
 
 " 23. git-blamer
 nnoremap gb :call gitblame#echo()<CR>
@@ -362,7 +365,7 @@ highlight link Searchlight Incsearch
 " TODO support icons of file
 
 " 32 markdown-preview
-noremap <silent><leader>mp <plug>MarkdownPreviewToggle
+noremap <silent><space>mp <plug>MarkdownPreviewToggle
 
 " 33 vim-markdown
 set conceallevel=0
