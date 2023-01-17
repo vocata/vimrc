@@ -49,6 +49,8 @@ Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'preservim/vim-markdown', {'for': ['markdown']}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Theme
 Plug 'flazz/vim-colorschemes'
@@ -216,10 +218,10 @@ let g:indentLine_showFirstIndentLevel=1
 let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh',]
 
 " 14. vim-smooth-scroll
-noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 2)<CR>
-noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
-noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
+noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
+noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 4)<CR>
+noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 6)<CR>
+noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 6)<CR>
 
 " 15. vim-easymotion
 " TODO
@@ -261,12 +263,13 @@ let g:ycm_enable_inlay_hints=0                                      " 关闭内�
 let g:ycm_clear_inlay_hints_in_insert_mode=0                        " 插入模式关闭内嵌提示
 let g:ycm_show_diagnostics_ui=0                                     " 不使用YCM的代码检测功能，使用ale实现代码检测
 let g:ycm_complete_in_strings=1                                     " 输入字符串也进行补全
-let g:ycm_min_num_of_chars_for_completion=2                         " 启动补全的最小输入字符
+let g:ycm_min_num_of_chars_for_completion=1                         " 启动补全的最小输入字符
 let g:ycm_min_num_identifier_candidate_chars=0                      " 候选标识符长度，不作限制
 let g:ycm_collect_identifiers_from_comments_and_strings=1           " 从注释和字符串中提取标识符用于补全
-let g:ycm_semantic_triggers={'c,cpp,python,go,rust': ['re!\w{2}'],} " 开启语法补全，输入两个字符时开启
+let g:ycm_semantic_triggers={'c,cpp,python,go,rust': ['re!\w{1}'],} " 开启语法补全，输入两个字符时开启
 let g:ycm_confirm_extra_conf=0                                      " 确认查找到的额外配置文件，不确认
 let g:ycm_goto_buffer_command='same-buffer'                         " 设置跳转的新窗口
+let g:ycm_use_ultisnips_completer=1                                 " 打开ultisnips补全
 " 若当前文件夹下没有配置文件，则加载全局配置文件
 " let g:ycm_conf_path = findfile('.ycm_extra_conf.py', '.;')
 " let g:ycm_global_ycm_extra_conf=g:ycm_conf_path
@@ -373,6 +376,13 @@ let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_math=0
 let g:vim_markdown_strikethrough=1
 
+" 34 ultisnips
+let g:UltiSnipsExpandTrigger='<C-E>'
+let g:UltiSnipsJumpForwardTrigger='<C-J>'
+let g:UltiSnipsJumpBackwardTrigger='<C-K>'
+
+" 35 vim-snippets
+" TODO a collection of snippets
 
 " " -----tips-----
 " " Put these lines at the very end of your vimrc file.
