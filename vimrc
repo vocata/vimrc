@@ -94,7 +94,7 @@ set incsearch
 set hlsearch
 set wildmenu
 " set cursorcolumn
-set cursorline
+" set cursorline
 set signcolumn=yes
 set wildoptions=pum
 
