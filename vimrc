@@ -29,7 +29,7 @@ Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim',
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 " Plug 'Yggdroot/indentLine'
-Plug 'terryma/vim-smooth-scroll'
+" Plug 'terryma/vim-smooth-scroll'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
 Plug 'w0rp/ale',
@@ -67,8 +67,9 @@ runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 
 " colorscheme
 " colorscheme space-vim-dark
-" colorscheme molokai
-colorscheme monokai-phoenix
+" colorscheme gruvbox
+colorscheme molokai
+" colorscheme monokai-phoenix
 
 " indent
 set expandtab
@@ -208,6 +209,7 @@ nnoremap ga <plug>(EasyAlign)
 " let g:airline_theme='luna'
 " let g:airline_theme='dark'
 let g:airline_theme='molokai'
+" let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
@@ -218,10 +220,10 @@ let g:indentLine_showFirstIndentLevel=1
 let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh',]
 
 " 14. vim-smooth-scroll
-noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
-noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 4)<CR>
-noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 6)<CR>
-noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 6)<CR>
+" noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
+" noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 4)<CR>
+" noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 6)<CR>
+" noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 6)<CR>
 
 " 15. vim-easymotion
 " TODO
