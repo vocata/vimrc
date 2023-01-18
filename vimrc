@@ -25,7 +25,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
-Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim', 'asm', 'sh', 'zsh', 'make', 'cmake',]}
+Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim', 'asm', 'sh', 'zsh', 'make', 'cmake']}
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 " Plug 'Yggdroot/indentLine'
@@ -40,7 +40,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Dimercel/todo-vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
+Plug 'google/vim-codefmt', {'for': ['c', 'cpp', 'proto', 'javascript', 'arduino', 'go', 'python', 'rust', 'sh']}
 Plug 'google/vim-glaive'
 " Plug 'google/vim-searchindex'
 " Plug 'junegunn/fzf', {'do': {->fzf#install()}}
@@ -54,7 +54,7 @@ Plug 'honza/vim-snippets'
 
 " Theme
 Plug 'flazz/vim-colorschemes'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
@@ -72,12 +72,13 @@ colorscheme molokai
 " colorscheme monokai-phoenix
 
 " indent
-set expandtab
-set smarttab           " 默认使用智能缩进
-set noshowmode
-set tabstop=4          " 输入tab时表示的空格数
-set shiftwidth=4       " 自动缩进时使用的空白数目，例如>>操作。设置为0时，使用tabstop的值
-set softtabstop=4      " 用于文本展示，例如tabstop=8，如果设置softtabstop=4，展示的tab也是4个空格的宽度
+set backspace=2   " 使用delimitMate括号展开必须选项
+set expandtab     " 插入时用空格替换tab字符
+set smarttab      " 默认使用智能缩进
+set noshowmode    " 不展示当前vim处于哪种模式，状态栏中已有这个信息
+set tabstop=4     " 输入tab时表示的空格数
+set shiftwidth=4  " 自动缩进时使用的空白数目，例如>>操作。设置为0时，使用tabstop的值
+set softtabstop=4 " 用于文本展示，例如tabstop=8，如果设置softtabstop=4，展示的tab也是4个空格的宽度
 
 " fold
 set foldenable
@@ -154,9 +155,9 @@ let g:undotree_SetFocusWhenToggle=1
 
 " 3. vim-commentary
 augroup commentary_settings
-    autocmd FileType python set commentstring=#\ %s   " 设置注释符号
-    autocmd FileType c,cpp set commentstring=//\ %s   " 设置注释符号
-    autocmd FileType asm set commentstring=;\ %s   " 设置注释符号
+    autocmd FileType python set commentstring=#\ %s " 设置注释符号
+    autocmd FileType c,cpp set commentstring=//\ %s " 设置注释符号
+    autocmd FileType asm set commentstring=;\ %s    " 设置注释符号
 augroup end
 
 " 4. vim-surround
@@ -369,21 +370,21 @@ highlight link Searchlight Incsearch
 " 31. vim-devicons
 " TODO support icons of file
 
-" 32 markdown-preview
+" 32. markdown-preview
 noremap <silent><space>mp <plug>MarkdownPreviewToggle
 
-" 33 vim-markdown
+" 33. vim-markdown
 set conceallevel=0
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_math=0
 let g:vim_markdown_strikethrough=1
 
-" 34 ultisnips
+" 34. ultisnips
 let g:UltiSnipsExpandTrigger='<C-E>'
 let g:UltiSnipsJumpForwardTrigger='<C-J>'
 let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 
-" 35 vim-snippets
+" 35. vim-snippets
 " TODO a collection of snippets
 
 " " -----tips-----
