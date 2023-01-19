@@ -95,7 +95,7 @@ set incsearch
 set hlsearch
 set wildmenu
 " set cursorcolumn
-" set cursorline
+set cursorline
 set signcolumn=yes
 set wildoptions=pum
 
@@ -144,6 +144,9 @@ augroup nerdtree_settings
 
     " open the existing NERDTree on each new tab.
     " autocmd BufEnter * if exists('b:NERDTree') | silent NERDTreeMirror | endif
+
+    " disable signcolumn
+    autocmd FileType nerdtree setlocal signcolumn=no
 augroup end
 let g:NERDTreeWinPos='left'
 " let g:NERDTreeMinimalMenu=1
