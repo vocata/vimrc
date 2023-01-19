@@ -53,7 +53,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Theme
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'vocata/vim-molokai'
 " Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -68,7 +69,8 @@ runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 " colorscheme
 " colorscheme space-vim-dark
 " colorscheme gruvbox
-colorscheme molokai
+" colorscheme molokai
+colorscheme molokai_dark_hard
 " colorscheme monokai-phoenix
 
 " indent
