@@ -51,6 +51,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'preservim/vim-markdown', {'for': ['markdown']}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'MattesGroeger/vim-bookmarks'
 
 " Theme
 " Plug 'flazz/vim-colorschemes'
@@ -390,6 +391,9 @@ let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 
 " 35. vim-snippets
 " TODO a collection of snippets
+
+" 36. vim-bookmarks
+
 
 " " -----tips-----
 " " Put these lines at the very end of your vimrc file.
