@@ -71,7 +71,8 @@ runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 " colorscheme space-vim-dark
 " colorscheme gruvbox
 " colorscheme molokai
-colorscheme molokai_dark_hard
+colorscheme molokai_original
+" colorscheme molokai_dark_hard
 " colorscheme monokai-phoenix
 
 " indent
@@ -101,6 +102,7 @@ set wildmenu
 set cursorline
 set signcolumn=yes
 set wildoptions=pum
+set updatetime=1200 " YCM需要多少毫秒弹出popup
 
 " function
 
@@ -124,7 +126,7 @@ augroup end
 
 " 1. nerdtree
 nnoremap <silent><space>l :NERDTreeFind<CR>
-nnoremap <silent><space>p :NERDTreeFocus<CR>
+nnoremap <silent><space>s :NERDTreeFocus<CR>
 nnoremap <silent><space>n :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
@@ -217,7 +219,7 @@ nnoremap ga <plug>(EasyAlign)
 let g:airline_theme='molokai'
 " let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+" let g:airline#extensions#tabline#enabled=1
 
 " 13. indentLine
 let g:indentLine_char='┆'
@@ -260,9 +262,12 @@ let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 " 18. YouCompleteMe
 noremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
 noremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+noremap <silent><space>: :rightbelow vertical YcmCompleter GoToDefinition<CR>
+noremap <silent><space>; :rightbelow vertical YcmCompleter GoToDeclaration<CR>
 noremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
 noremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
 noremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
+noremap <silent><space>, <plug>(YCMHover)
 " noremap <silent><space>yfw <Plug>(YCMFindSymbolInWorkspace)
 " noremap <silent><space>yfd <Plug>(YCMFindSymbolInDocument)
 set completeopt=menu,menuone
@@ -310,14 +315,14 @@ function! SetCompileOptions()
     noremap <silent><space>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
         autocmd FileType c noremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType c noremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp noremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp noremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType python noremap <silent><space>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
         autocmd FileType sh noremap <silent><space>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
         autocmd FileType go noremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
         autocmd FileType go noremap <silent><space>b :AsyncRun -save=1 go build .<CR>
-        autocmd FileType go noremap <silent><space>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go noremap <silent><space>t :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
         autocmd FileType go noremap <silent><space>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
         autocmd FileType rust noremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
         autocmd FileType rust noremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
