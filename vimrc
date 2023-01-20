@@ -160,7 +160,6 @@ let g:undotree_SetFocusWhenToggle=1
 
 " 3. vim-commentary
 augroup commentary_settings
-    autocmd FileType python set commentstring=#\ %s " 设置注释符号
     autocmd FileType c,cpp set commentstring=//\ %s " 设置注释符号
     autocmd FileType asm set commentstring=;\ %s    " 设置注释符号
 augroup end
