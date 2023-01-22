@@ -3,8 +3,8 @@ set fileencodings=utf-8,gbk
 set encoding=utf-8
 scriptencoding utf-8
 
-" Uncomment the following to have Vim jump to the last position when       
-" reopening a file                                                         
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
 if has('autocmd')
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -28,8 +28,8 @@ Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim', 'asm', 'sh', 'zsh', 'make', 'cmake']}
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
-" Plug 'Yggdroot/indentLine'
-" Plug 'terryma/vim-smooth-scroll'
+" Plug 'Yggdroot/indentLine'       " 缩进线，有bug，停用
+" Plug 'terryma/vim-smooth-scroll' " 顺滑滚动，增加渲染时间，停用
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
 Plug 'w0rp/ale',
@@ -42,21 +42,20 @@ Plug 'zivyangll/git-blame.vim'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt', {'for': ['c', 'cpp', 'proto', 'javascript', 'arduino', 'go', 'python', 'rust', 'sh']}
 Plug 'google/vim-glaive'
-" Plug 'google/vim-searchindex'
-" Plug 'junegunn/fzf', {'do': {->fzf#install()}}
-" Plug 'junegunn/fzf.vim'
+" Plug 'google/vim-searchindex'                  " 显示第几个搜索结果，airline中有类似功能，停用
+" Plug 'junegunn/fzf', {'do': {->fzf#install()}} " fzf的vim插件，使用LeaderF做模糊搜索，停用
+" Plug 'junegunn/fzf.vim'                        " 在vim中提供更多fzf相关的快捷操作，使用LeaderF做模糊搜索，停用
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'preservim/vim-markdown', {'for': ['markdown']}
+Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'MattesGroeger/vim-bookmarks'
 
 " Theme
-" Plug 'flazz/vim-colorschemes'
-Plug 'vocata/vim-molokai'
-" Plug 'sheerun/vim-polyglot'
+Plug 'flazz/vim-colorschemes'
+" Plug 'sheerun/vim-polyglot' " 多语言高亮包，使用YCM语法高亮，停用
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
@@ -68,12 +67,7 @@ call plug#end()
 runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 
 " colorscheme
-" colorscheme space-vim-dark
-" colorscheme gruvbox
-" colorscheme molokai
-colorscheme molokai_original
-" colorscheme molokai_dark_hard
-" colorscheme monokai-phoenix
+colorscheme molokai
 
 " indent
 set backspace=2   " 使用delimitMate括号展开必须选项
@@ -94,6 +88,7 @@ set foldlevelstart=99
 " set spelllang=en
 
 " normal setting
+set mouse=a
 set number
 set incsearch
 set hlsearch
@@ -107,13 +102,12 @@ set updatetime=1200 " YCM需要多少毫秒弹出popup
 " function
 
 " map
-noremap <space><space> za
-noremap <silent><space>m :Man <cword><CR>
-noremap <silent><esc><esc> <esc>:nohls<CR>
-noremap <silent><C-H> :wincmd h<CR>
-noremap <silent><C-J> :wincmd j<CR>
-noremap <silent><C-k> :wincmd k<CR>
-noremap <silent><C-L> :wincmd l<CR>
+nnoremap <space><space> za
+nnoremap <silent><esc><esc> <esc>:nohls<CR>
+nnoremap <silent><C-H> :wincmd h<CR>
+nnoremap <silent><C-J> :wincmd j<CR>
+nnoremap <silent><C-k> :wincmd k<CR>
+nnoremap <silent><C-L> :wincmd l<CR>
 
 " presetting autocmd groups
 augroup filetype_settings
@@ -157,7 +151,7 @@ let g:NERDTreeWinPos='left'
 " let g:NERDTreeMinimalMenu=1
 
 " 2. undotree
-noremap <silent><space>ud :UndotreeToggle<CR>
+nnoremap <silent><space>ud :UndotreeToggle<CR>
 let g:undotree_WindowLayout=3
 let g:undotree_SetFocusWhenToggle=1
 
@@ -214,12 +208,11 @@ xnoremap ga <plug>(EasyAlign)
 nnoremap ga <plug>(EasyAlign)
 
 " 12. vim-airline
+let g:airline_theme='dark'
 " let g:airline_theme='luna'
-" let g:airline_theme='dark'
-let g:airline_theme='molokai'
-" let g:airline_theme='base16_gruvbox_dark_hard'
+" let g:airline_theme='molokai'
 let g:airline_powerline_fonts=1
-" let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=1
 
 " 13. indentLine
 let g:indentLine_char='┆'
@@ -237,8 +230,8 @@ let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh
 " TODO
 
 " 16. vim-signify
-noremap <silent><space>gd :SignifyHunkDiff<CR>
-noremap <silent><space>gu :SignifyHunkUndo<CR>
+nnoremap <silent><space>gd :SignifyHunkDiff<CR>
+nnoremap <silent><space>gu :SignifyHunkUndo<CR>
 nnoremap <silent><space>gj <plug>(signify-next-hunk)
 nnoremap <silent><space>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
@@ -260,16 +253,16 @@ let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 
 " 18. YouCompleteMe
-noremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
-noremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
-noremap <silent><space>: :rightbelow vertical YcmCompleter GoToDefinition<CR>
-noremap <silent><space>; :rightbelow vertical YcmCompleter GoToDeclaration<CR>
-noremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
-noremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
-noremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
-noremap <silent><space>, <plug>(YCMHover)
-" noremap <silent><space>yfw <Plug>(YCMFindSymbolInWorkspace)
-" noremap <silent><space>yfd <Plug>(YCMFindSymbolInDocument)
+nnoremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
+nnoremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+nnoremap <silent><space>: :rightbelow vertical YcmCompleter GoToDefinition<CR>
+nnoremap <silent><space>; :rightbelow vertical YcmCompleter GoToDeclaration<CR>
+nnoremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
+nnoremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
+nnoremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
+nnoremap <silent><space>, <plug>(YCMHover)
+" nnoremap <silent><space>yfw <Plug>(YCMFindSymbolInWorkspace)
+" nnoremap <silent><space>yfd <Plug>(YCMFindSymbolInDocument)
 set completeopt=menu,menuone
 let g:ycm_enable_semantic_highlighting=1                            " 打开语法高亮
 let g:ycm_enable_inlay_hints=0                                      " 关闭内嵌提示
@@ -310,23 +303,23 @@ let g:quickfix_height=15    " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 let g:asyncrun_bell=0   " 提示音开
 function! SetCompileOptions()
-    noremap <silent><space>c :AsyncStop!<CR>
-    noremap <silent><space>M :AsyncRun -save=2 make<CR>
-    noremap <silent><space>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
+    nnoremap <silent><space>c :AsyncStop!<CR>
+    nnoremap <silent><space>M :AsyncRun -save=2 make<CR>
+    nnoremap <silent><space>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
-        autocmd FileType c noremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c noremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp noremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python noremap <silent><space>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh noremap <silent><space>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
-        autocmd FileType go noremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
-        autocmd FileType go noremap <silent><space>b :AsyncRun -save=1 go build .<CR>
-        autocmd FileType go noremap <silent><space>t :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go noremap <silent><space>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
-        autocmd FileType rust noremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
-        autocmd FileType rust noremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
-        autocmd FileType rust noremap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
+        autocmd FileType c nnoremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c nnoremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp nnoremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp nnoremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType python nnoremap <silent><space>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh nnoremap <silent><space>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
+        autocmd FileType go nnoremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
+        autocmd FileType go nnoremap <silent><space>b :AsyncRun -save=1 go build .<CR>
+        autocmd FileType go nnoremap <silent><space>t :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go nnoremap <silent><space>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType rust nnoremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
+        autocmd FileType rust nnoremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
+        autocmd FileType rust nnoremap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
     augroup end
 endfunction
 call SetCompileOptions()
@@ -335,7 +328,7 @@ call SetCompileOptions()
 let g:echodoc_enable_at_startup=1
 
 " 22. todo-vim
-noremap <silent><space>td :TODOToggle<CR>
+nnoremap <silent><space>td :TODOToggle<CR>
 
 " 23. git-blamer
 nnoremap gb :call gitblame#echo()<CR>
@@ -381,7 +374,7 @@ highlight link Searchlight Incsearch
 " TODO support icons of file
 
 " 32. markdown-preview
-noremap <silent><space>mp <plug>MarkdownPreviewToggle
+nnoremap <silent><space>mp <plug>MarkdownPreviewToggle
 
 " 33. vim-markdown
 set conceallevel=0
@@ -398,6 +391,17 @@ let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 " TODO a collection of snippets
 
 " 36. vim-bookmarks
+let g:bookmark_no_default_key_mappings=1
+nnoremap <silent><space>mm <Plug>BookmarkToggle
+nnoremap <silent><space>mi <Plug>BookmarkAnnotate
+nnoremap <silent><space>ma <Plug>BookmarkShowAll
+nnoremap <silent><space>mj <Plug>BookmarkNext
+nnoremap <silent><space>mk <Plug>BookmarkPrev
+nnoremap <silent><space>mc <Plug>BookmarkClear
+nnoremap <silent><space>mx <Plug>BookmarkClearAll
+nnoremap <silent><space>mg <Plug>BookmarkMoveToLine
+nnoremap <silent><space>kk <Plug>BookmarkMoveUp
+nnoremap <silent><space>jj <Plug>BookmarkMoveDown
 
 
 " " -----tips-----
