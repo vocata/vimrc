@@ -47,11 +47,12 @@ Plug 'google/vim-glaive'
 " Plug 'junegunn/fzf.vim'                        " 在vim中提供更多fzf相关的快捷操作，使用LeaderF做模糊搜索，停用
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown'}
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'mhinz/vim-startify'
 
 " Theme
 " Plug 'sheerun/vim-polyglot' " 多语言高亮包，使用YCM语法高亮，停用
@@ -64,12 +65,12 @@ call plug#end()
 
 " -----basic configurations-----
 " runtime
-runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
+runtime ftplugin/man.vim "较好地显示手册页的系统自带的插件
 
 " colorscheme
 " important!!
 if has('termguicolors')
-    set termguicolors
+    set termguicolors " 24位色
 endif
 set background=dark
 
@@ -100,7 +101,9 @@ set foldlevelstart=99
 " set spelllang=en
 
 " normal setting
-set mouse=a
+if has('mouse')
+    set mouse=a
+endif
 set number
 set incsearch
 set hlsearch
@@ -112,6 +115,7 @@ set wildoptions=pum
 set updatetime=1200 " YCM需要多少毫秒弹出popup
 
 " function
+" TODO
 
 " map
 nnoremap <space><space> za
@@ -124,7 +128,7 @@ nnoremap <silent><C-L> :wincmd l<CR>
 " presetting autocmd groups
 augroup filetype_settings
     autocmd BufRead,BufNewFile *.asm,*.s,*.S set filetype=asm
-    autocmd FileType * set formatoptions-=cro  " 关闭自动注释
+    autocmd FileType * set formatoptions-=cro " 关闭自动注释
 augroup end
 
 
@@ -265,9 +269,9 @@ let g:ale_lint_on_enter=1
 let g:ale_lint_on_insert_leave=1
 let g:ale_sign_error='->'
 let g:ale_sign_warning='!'
-let g:ale_linters_explicit=1    " 显示指定文件类型使用的linter
+let g:ale_linters_explicit=1 " 显示指定文件类型使用的linter，配合g:ale_linters使用
 let g:ale_linters={'python': ['pylint'], 'c': ['clang'], 'cpp': ['clang'], 'go': ['staticcheck'], 'rust': ['cargo'], 'vim': ['vint']}
-" 配置linter的选项"
+" linter配置
 let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 
@@ -318,9 +322,9 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 20. asyncrun
-let g:quickfix_height=15    " quickfix窗口的高度
+let g:quickfix_height=15 " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
-let g:asyncrun_bell=0   " 提示音开
+let g:asyncrun_bell=0 " 提示音开
 function! SetCompileOptions()
     nnoremap <silent><space>c :AsyncStop!<CR>
     nnoremap <silent><space>M :AsyncRun -save=2 make<CR>
@@ -421,6 +425,9 @@ nnoremap <silent><space>bx <Plug>BookmarkClearAll
 nnoremap <silent><space>bg <Plug>BookmarkMoveToLine
 nnoremap <silent><space>bkk <Plug>BookmarkMoveUp
 nnoremap <silent><space>bjj <Plug>BookmarkMoveDown
+
+" 37. vim-startify
+let g:startify_bookmarks=systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 
 
 " " -----tips-----
