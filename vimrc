@@ -54,9 +54,9 @@ Plug 'honza/vim-snippets'
 Plug 'MattesGroeger/vim-bookmarks'
 
 " Theme
-Plug 'flazz/vim-colorschemes'
 " Plug 'sheerun/vim-polyglot' " 多语言高亮包，使用YCM语法高亮，停用
-Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/sonokai'      " sonokai配色
+Plug 'sainnhe/edge'         " edge配色
 Plug 'ryanoasis/vim-devicons'
 
 " List ends here. Plugins become visible to Vim after this call
@@ -67,7 +67,19 @@ call plug#end()
 runtime ftplugin/man.vim    "较好地显示手册页的系统自带的插件
 
 " colorscheme
-colorscheme molokai
+" important!!
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
+
+let g:sonokai_style='atlantis' " default/atlantis/andromeda/shusia/maia/espresso
+let g:sonokai_better_performance=1
+colorscheme sonokai
+
+" let g:edge_style='default' " default/aura/neon
+" let g:edge_better_performance=1
+" colorscheme edge
 
 " indent
 set backspace=2   " 使用delimitMate括号展开必须选项
@@ -192,7 +204,8 @@ let g:Lf_ShowHidden=1
 let g:Lf_WindowHeight=0.3
 " let g:Lf_StlSeparator={'left': '►', 'right': '◄', 'font': ''}
 " let g:Lf_StlSeparator={'left': '', 'right': ''}
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+" let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 " let g:Lf_StlColorscheme='one'
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_CacheDirectory=expand('$HOME/.cache/LfCache')
@@ -208,13 +221,16 @@ xnoremap ga <plug>(EasyAlign)
 nnoremap ga <plug>(EasyAlign)
 
 " 12. vim-airline
-let g:airline_theme='dark'
-" let g:airline_theme='luna'
-" let g:airline_theme='molokai'
+let g:airline_theme='sonokai'
+" let g:airline_theme='edge'
+let g:airline_left_sep=''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep=''
+let g:airline_right_alt_sep = ''
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#show_buffers=0
-let g:airline#extensions#tabline#tab_min_count=2
+let g:airline#extensions#tabline#show_buffers=1
+let g:airline#extensions#tabline#tab_min_count=1
 let g:airline#extensions#tabline#show_tab_nr=0
 
 " 13. indentLine
@@ -258,8 +274,8 @@ let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 " 18. YouCompleteMe
 nnoremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
 nnoremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
-nnoremap <silent><space>: :rightbelow vertical YcmCompleter GoToDefinition<CR>
-nnoremap <silent><space>; :rightbelow vertical YcmCompleter GoToDeclaration<CR>
+nnoremap <silent><space>; :rightbelow vertical YcmCompleter GoToDefinition<CR>
+nnoremap <silent><space>: :rightbelow vertical YcmCompleter GoToDeclaration<CR>
 nnoremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
 nnoremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
 nnoremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
@@ -395,16 +411,16 @@ let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 
 " 36. vim-bookmarks
 let g:bookmark_no_default_key_mappings=1
-nnoremap <silent><space>mm <Plug>BookmarkToggle
-nnoremap <silent><space>mi <Plug>BookmarkAnnotate
-nnoremap <silent><space>ma <Plug>BookmarkShowAll
-nnoremap <silent><space>mj <Plug>BookmarkNext
-nnoremap <silent><space>mk <Plug>BookmarkPrev
-nnoremap <silent><space>mc <Plug>BookmarkClear
-nnoremap <silent><space>mx <Plug>BookmarkClearAll
-nnoremap <silent><space>mg <Plug>BookmarkMoveToLine
-nnoremap <silent><space>kk <Plug>BookmarkMoveUp
-nnoremap <silent><space>jj <Plug>BookmarkMoveDown
+nnoremap <silent><space>bm <Plug>BookmarkToggle
+nnoremap <silent><space>bi <Plug>BookmarkAnnotate
+nnoremap <silent><space>ba <Plug>BookmarkShowAll
+nnoremap <silent><space>bj <Plug>BookmarkNext
+nnoremap <silent><space>bk <Plug>BookmarkPrev
+nnoremap <silent><space>bc <Plug>BookmarkClear
+nnoremap <silent><space>bx <Plug>BookmarkClearAll
+nnoremap <silent><space>bg <Plug>BookmarkMoveToLine
+nnoremap <silent><space>bkk <Plug>BookmarkMoveUp
+nnoremap <silent><space>bjj <Plug>BookmarkMoveDown
 
 
 " " -----tips-----
