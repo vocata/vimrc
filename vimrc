@@ -111,8 +111,10 @@ set wildmenu
 " set cursorcolumn
 set cursorline
 set signcolumn=yes
-set wildoptions=pum
 set updatetime=1200 " YCM需要多少毫秒弹出popup
+if v:version >= 900
+    set wildoptions=fuzzy,pum
+endif
 
 " function
 " TODO
