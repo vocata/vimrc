@@ -47,7 +47,7 @@ Plug 'google/vim-glaive'
 " Plug 'junegunn/fzf.vim'                        " 在vim中提供更多fzf相关的快捷操作，使用LeaderF做模糊搜索，停用
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
