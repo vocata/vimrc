@@ -32,8 +32,8 @@ Plug 'vim-airline/vim-airline'
 " Plug 'terryma/vim-smooth-scroll' " 顺滑滚动，增加渲染时间，停用
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
-Plug 'w0rp/ale',
-Plug 'Valloric/YouCompleteMe'
+Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe', {'for': ['python', 'c', 'cpp', 'go', 'rust']}
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'Shougo/echodoc.vim'
@@ -47,7 +47,7 @@ Plug 'google/vim-glaive'
 " Plug 'junegunn/fzf.vim'                        " 在vim中提供更多fzf相关的快捷操作，使用LeaderF做模糊搜索，停用
 Plug 'PeterRincker/vim-searchlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': 'markdown'}
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -328,20 +328,20 @@ let g:quickfix_height=15 " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 let g:asyncrun_bell=0 " 提示音开
 function! SetCompileOptions()
-    nnoremap <silent><space>c :AsyncStop!<CR>
+    nnoremap <silent><space>C :AsyncStop!<CR>
     nnoremap <silent><space>M :AsyncRun -save=2 make<CR>
-    nnoremap <silent><space>q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
+    nnoremap <silent><space>Q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
         autocmd FileType c nnoremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType c nnoremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp nnoremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
         autocmd FileType cpp nnoremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python nnoremap <silent><space>r :AsyncRun -save=1 -raw python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh nnoremap <silent><space>r :AsyncRun -raw -save=1 zsh $VIM_FILEPATH<CR>
+        autocmd FileType python nnoremap <silent><space>r :AsyncRun -raw -save=1 python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh nnoremap <silent><space>r :AsyncRun -raw -save=1 sh $VIM_FILEPATH<CR>
         autocmd FileType go nnoremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
         autocmd FileType go nnoremap <silent><space>b :AsyncRun -save=1 go build .<CR>
         autocmd FileType go nnoremap <silent><space>t :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go nnoremap <silent><space>tf :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType go nnoremap <silent><space>tt :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
         autocmd FileType rust nnoremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
         autocmd FileType rust nnoremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
         autocmd FileType rust nnoremap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
@@ -417,16 +417,16 @@ let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 
 " 36. vim-bookmarks
 let g:bookmark_no_default_key_mappings=1
-nnoremap <silent><space>bm <Plug>BookmarkToggle
-nnoremap <silent><space>bi <Plug>BookmarkAnnotate
-nnoremap <silent><space>ba <Plug>BookmarkShowAll
-nnoremap <silent><space>bj <Plug>BookmarkNext
-nnoremap <silent><space>bk <Plug>BookmarkPrev
-nnoremap <silent><space>bc <Plug>BookmarkClear
-nnoremap <silent><space>bx <Plug>BookmarkClearAll
-nnoremap <silent><space>bg <Plug>BookmarkMoveToLine
-nnoremap <silent><space>bkk <Plug>BookmarkMoveUp
-nnoremap <silent><space>bjj <Plug>BookmarkMoveDown
+nnoremap <silent><space>mm <Plug>BookmarkToggle
+nnoremap <silent><space>mi <Plug>BookmarkAnnotate
+nnoremap <silent><space>ma <Plug>BookmarkShowAll
+nnoremap <silent><space>mj <Plug>BookmarkNext
+nnoremap <silent><space>mk <Plug>BookmarkPrev
+nnoremap <silent><space>mc <Plug>BookmarkClear
+nnoremap <silent><space>mx <Plug>BookmarkClearAll
+nnoremap <silent><space>mg <Plug>BookmarkMoveToLine
+nnoremap <silent><space>mkk <Plug>BookmarkMoveUp
+nnoremap <silent><space>mjj <Plug>BookmarkMoveDown
 
 " 37. vim-startify
 let g:startify_bookmarks=systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
