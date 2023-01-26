@@ -6,7 +6,7 @@ scriptencoding utf-8
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has('autocmd')
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Plugins will be downloaded under the specified directory
@@ -25,7 +25,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
-Plug 'Raimondi/delimitMate', {'for': ['python', 'cpp', 'c', 'go', 'rust', 'vim', 'asm', 'sh', 'zsh', 'make', 'cmake']}
+Plug 'Raimondi/delimitMate', {'for': ['python', 'c', 'cpp', 'go', 'rust', 'sh', 'zsh', 'vim', 'asm', 'make', 'cmake']}
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 " Plug 'Yggdroot/indentLine'       " 缩进线，有bug，停用
@@ -40,7 +40,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Dimercel/todo-vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt', {'for': ['c', 'cpp', 'proto', 'javascript', 'arduino', 'go', 'python', 'rust', 'sh']}
+Plug 'google/vim-codefmt', {'for': ['python', 'c', 'cpp', 'go', 'rust', 'sh', 'zsh']}
 Plug 'google/vim-glaive'
 " Plug 'google/vim-searchindex'                  " 显示第几个搜索结果，airline中有类似功能，停用
 " Plug 'junegunn/fzf', {'do': {->fzf#install()}} " fzf的vim插件，使用LeaderF做模糊搜索，停用
@@ -138,7 +138,6 @@ augroup end
 
 " 1. nerdtree
 nnoremap <silent><space>l :NERDTreeFind<CR>
-nnoremap <silent><space>s :NERDTreeFocus<CR>
 nnoremap <silent><space>n :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
@@ -272,7 +271,7 @@ let g:ale_lint_on_insert_leave=1
 let g:ale_sign_error='->'
 let g:ale_sign_warning='!'
 let g:ale_linters_explicit=1 " 显示指定文件类型使用的linter，配合g:ale_linters使用
-let g:ale_linters={'python': ['pylint'], 'c': ['clang'], 'cpp': ['clang'], 'go': ['staticcheck'], 'rust': ['cargo'], 'vim': ['vint']}
+let g:ale_linters={'python': ['pylint'], 'c': ['clang'], 'cpp': ['clang'], 'go': ['staticcheck'], 'rust': ['cargo'], 'sh': ['shellcheck'], 'zsh': ['shellcheck'], 'vim': ['vint']}
 " linter配置
 let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
@@ -373,8 +372,8 @@ augroup autoformat_settings
     autocmd FileType rust AutoFormatBuffer rustfmt
     " autocmd FileType vue AutoFormatBuffer prettier
     " autocmd FileType swift AutoFormatBuffer swift-format
-    autocmd FileType sh AutoFormatBuffer shfmt
-    autocmd FileType sh Glaive codefmt shfmt_options=`['-i', '4', '-sr', '-ci']`
+    autocmd FileType sh,zsh AutoFormatBuffer shfmt
+    autocmd FileType sh,zsh Glaive codefmt shfmt_options=`['-i', '4', '-sr', '-ci']`
 augroup end
 
 " 25. vim-glaive
