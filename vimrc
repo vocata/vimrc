@@ -239,10 +239,10 @@ let g:airline#extensions#tabline#tab_min_count=1
 let g:airline#extensions#tabline#show_tab_nr=0
 
 " 13. indentLine
-let g:indentLine_char='┆'
-let g:indentLine_first_char='┆'
-let g:indentLine_showFirstIndentLevel=1
-let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh',]
+" let g:indentLine_char='┆'
+" let g:indentLine_first_char='┆'
+" let g:indentLine_showFirstIndentLevel=1
+" let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh',]
 
 " 14. vim-smooth-scroll
 " noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
@@ -305,27 +305,21 @@ let g:ycm_use_ultisnips_completer=1                                 " 打开ulti
 " let g:ycm_global_ycm_extra_conf=g:ycm_conf_path
 
 " 19. vim-gutentags
-" set tags=./.tags;,.tags
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile='.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags=expand('$HOME/.cache/tags')
-let g:gutentags_cache_dir=s:vim_tags
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
-endif
+" let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project'] " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+" let g:gutentags_ctags_tagfile='.tags'                                     " 所生成的数据文件的名称
+" let s:vim_tags=expand('$HOME/.cache/tags')                                " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+" let g:gutentags_cache_dir=s:vim_tags
+" let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']        " 配置 ctags 的参数
+" let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
+" let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
+" if !isdirectory(s:vim_tags)                                               " 检测 ~/.cache/tags 不存在就新建
+"     silent! call mkdir(s:vim_tags, 'p')
+" endif
 
 " 20. asyncrun
+let g:asyncrun_bell=0    " 提示音开
 let g:quickfix_height=15 " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
-let g:asyncrun_bell=0 " 提示音开
 function! SetCompileOptions()
     nnoremap <silent><space>C :AsyncStop!<CR>
     nnoremap <silent><space>M :AsyncRun -save=2 make<CR>
