@@ -33,7 +33,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
 Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clangd-completer', 'for': ['python', 'c', 'cpp', 'go', 'rust']}
+Plug 'Valloric/YouCompleteMe'
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'Shougo/echodoc.vim'
