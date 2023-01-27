@@ -1,4 +1,4 @@
-# Personal vim configaration
+# My VIM IDE
 
 ## Prerequisite
 
@@ -17,7 +17,7 @@ brew install \
 
 ### Install vim-plug
 
-[vim-plug](https://github.com/junegunn/vim-plug) is a powerful plugin manager designed for vim/neovim.
+[vim-plug](https://github.com/junegunn/vim-plug) is a popular plugin manager designed for vim/neovim.
 
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -33,7 +33,7 @@ cd $HOME
 git clone --depth 1 --branch main https://github.com/vocata/vimrc.git
 ```
 
-Backup your own **.vimrc** file before creating a soft link to vimrc/vimrc.
+Make sure you have backed up your own **.vimrc** file before creating a soft link to vimrc/vimrc.
 
 ```bash
 ln -s vimrc/vimrc $HOME/.vimrc
@@ -41,12 +41,20 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
 ### Install vim plugin
 
-1. Open vim and enter command mode, then execute **:PlugInstall** to clone plugin into **.vim/plugged**.
+1. Open vim and enter command mode, then execute **:PlugInstall** to clone plugins into **.vim/plugged**.
 
-2. [YcmCompleteMe](https://github.com/vocata/vimrc
-): a code-completion engine for vim
+2. [YcmCompleteMe](https://github.com/vocata/vimrc): a code-completion engine for vim
 
-    By default, YCM only supports python/c/c++ completer, you can install other language completers, here providing some installation instructions of common-used language completers in my daily coding. For more details, refer to [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe).
+    By default, YCM is unavailable, you should install other language completers to enable it, here providing some installation instructions of common-used language completers in my daily coding. For more details, refer to official [document](https://github.com/ycm-core/YouCompleteMe).
+
+    **c/c++**
+
+    Make sure you have **gcc/g++** installed in current environment.
+
+    ```bash
+    cd ~/.vim/plugged/YouCompleteMe
+    python3 install.py --clangd-completer
+    ```
 
     **golang**
 
@@ -64,7 +72,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **rust**
 
-    Install **rust** tool chain using homebrew
+    Install **rust** toolchain using homebrew
 
     ```bash
     brew install rust
@@ -92,7 +100,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **python**
 
-    Use **pylint** as linter
+    Use **pylint** as python linter
 
     ```base
     brew install pylint
@@ -100,7 +108,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **c/c++**
 
-    Use **clang** as linter
+    Use **clang** as c/c++ linter
 
     ```bash
     brew install llvm
@@ -108,7 +116,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **golang**
 
-    Use **staticcheck** as linter
+    Use **staticcheck** as golang linter
 
     ```bash
     brew install staticcheck
@@ -116,7 +124,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **rust**
 
-    Use **cargo** as linter
+    Use **cargo** as rust linter
 
     ```bash
     brew install rust
@@ -124,7 +132,7 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **sh/zsh**
 
-    Use **shellcheck** as linter
+    Use **shellcheck** as shell script linter
 
     ```bash
     brew install shellcheck
@@ -132,39 +140,39 @@ ln -s vimrc/vimrc $HOME/.vimrc
 
     **vim**
 
-    Use **vim-vint** as linter
+    Use **vim-vint** as vimscript linter
 
     ```bash
     brew install vint
     ```
 
-5. [vim-codefmt](https://github.com/google/vim-codefmt)
+5. [vim-codefmt](https://github.com/google/vim-codefmt): a code formatter wrapper
 
-    **python** formatter
+    Use **black** as python formatter
 
     ```bash
     brew install black
     ```
 
-    **c/c++** formatter
+    Use **clang-format** as c/c++ formatter
 
     ```bash
     brew install clang-format
     ```
 
-    **golang** formatter
+    Use **gofmt** as golang formatter
 
     ```bash
     brew install go
     ```
 
-    **rust** formatter
+    Use **rustfmt** as rust formatter
 
     ```bash
     brew install rustfmt
     ```
 
-    **sh/zsh** formatter
+    Use **shfmt** as shell script formatter
 
     ```bash
     brew install shfmt
