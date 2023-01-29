@@ -322,7 +322,6 @@ let g:quickfix_height=15 " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 function! SetCompileOptions()
     nnoremap <silent><space>C :AsyncStop!<CR>
-    nnoremap <silent><space>M :AsyncRun -save=2 make<CR>
     nnoremap <silent><space>Q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
         autocmd FileType c nnoremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
