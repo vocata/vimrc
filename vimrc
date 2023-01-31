@@ -53,6 +53,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mhinz/vim-startify'
+Plug 'dominikduda/vim_current_word', {'for': ['python', 'c', 'cpp', 'go', 'rust', 'sh', 'zsh', 'vim', 'asm', 'make', 'cmake']}
+
 
 " Theme
 " Plug 'sheerun/vim-polyglot' " 多语言高亮包，使用YCM语法高亮，停用
@@ -422,6 +424,15 @@ nnoremap <silent><space>mjj <Plug>BookmarkMoveDown
 
 " 37. vim-startify
 let g:startify_bookmarks=systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+
+" 38. vim_current_word
+augroup filetype_settings
+    autocmd FileType nerdtree let b:vim_current_word_disabled_in_this_buffer=1
+augroup end
+let g:vim_current_word#highlight_twins=1
+let g:vim_current_word#highlight_current_word=1
+let g:vim_current_word#highlight_only_in_focused_window=1
+let g:vim_current_word#highlight_delay=0
 
 
 " " -----tips-----
