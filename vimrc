@@ -57,7 +57,7 @@ Plug 'dominikduda/vim_current_word', {'for': ['python', 'c', 'cpp', 'go', 'rust'
 
 
 " Theme
-" Plug 'sheerun/vim-polyglot' " 多语言高亮包，使用YCM语法高亮，停用
+Plug 'sheerun/vim-polyglot' " 多语言高亮包
 Plug 'sainnhe/sonokai'      " sonokai配色
 Plug 'sainnhe/edge'         " edge配色
 Plug 'ryanoasis/vim-devicons'
