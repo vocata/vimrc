@@ -65,61 +65,70 @@ Plug 'ryanoasis/vim-devicons'
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()
 
-" -----basic configurations-----
-" runtime
+" available system plugin
 runtime ftplugin/man.vim "较好地显示手册页的系统自带的插件
 
-" colorscheme
-" important!!
-if has('termguicolors')
-    set termguicolors " 24位色
-endif
-set background=dark
+" -----basic configurations-----
+" function definition
+function! SetColorscheme()
+    " important!!
+    if has('termguicolors')
+        set termguicolors " 24位色
+    endif
+    set background=dark
 
-let g:sonokai_style='atlantis' " default/atlantis/andromeda/shusia/maia/espresso
-let g:sonokai_better_performance=1
-colorscheme sonokai
+    let g:sonokai_style='atlantis' " default/atlantis/andromeda/shusia/maia/espresso
+    let g:sonokai_better_performance=1
+    colorscheme sonokai
 
-" let g:edge_style='default' " default/aura/neon
-" let g:edge_better_performance=1
-" colorscheme edge
+    " let g:edge_style='default' " default/aura/neon
+    " let g:edge_better_performance=1
+    " colorscheme edge
+endfunction
 
-" indent
-set backspace=2   " 使用delimitMate括号展开必须选项
-set expandtab     " 插入时用空格替换tab字符
-set smarttab      " 默认使用智能缩进
-set noshowmode    " 不展示当前vim处于哪种模式，状态栏中已有这个信息
-set tabstop=4     " 输入tab时表示的空格数
-set shiftwidth=4  " 自动缩进时使用的空白数目，例如>>操作。设置为0时，使用tabstop的值
-set softtabstop=4 " 用于文本展示，例如tabstop=8，如果设置softtabstop=4，展示的tab也是4个空格的宽度
+function! SetDefaultOptions()
+    if has('mouse')
+        set mouse=a
+    endif
+    set number
+    set incsearch
+    set hlsearch
+    set wildmenu
+    " set cursorcolumn
+    set cursorline
+    set signcolumn=yes
+    set updatetime=1200 " YCM依赖该选项，延迟1200毫秒弹出补全
+    if v:version >= 900
+        set wildoptions=fuzzy,pum
+    endif
+endfunction
 
-" fold
-set foldenable
-set foldmethod=indent
-set foldlevelstart=99
+function! SetIndentOptions()
+    set backspace=2   " 使用delimitMate括号展开必须选项
+    set expandtab     " 插入时用空格替换tab字符
+    set smarttab      " 默认使用智能缩进
+    set noshowmode    " 不展示当前vim处于哪种模式，状态栏中已有这个信息
+    set tabstop=4     " 输入tab时表示的空格数
+    set shiftwidth=4  " 自动缩进时使用的空白数目，例如>>操作。设置为0时，使用tabstop的值
+    set softtabstop=4 " 用于文本展示，例如tabstop=8，如果设置softtabstop=4，展示的tab也是4个空格的宽度
+endfunction
 
-" spell check
-" set spell
-" set spelllang=en
+function! SetFoldOptions()
+    set foldenable
+    set foldmethod=indent
+    set foldlevelstart=99
+endfunction
 
-" normal setting
-if has('mouse')
-    set mouse=a
-endif
-set number
-set incsearch
-set hlsearch
-set wildmenu
-" set cursorcolumn
-set cursorline
-set signcolumn=yes
-set updatetime=1200 " YCM需要多少毫秒弹出popup
-if v:version >= 900
-    set wildoptions=fuzzy,pum
-endif
+function! SetSpellcheckOptions()
+    set spell
+    set spelllang=en
+endfunction
 
-" function
-" TODO
+call SetColorscheme()
+call SetDefaultOptions()
+call SetIndentOptions()
+" call SetSpellcheckOptions()
+call SetFoldOptions()
 
 " map
 nnoremap <space><space> za
@@ -128,6 +137,7 @@ nnoremap <silent><C-H> :wincmd h<CR>
 nnoremap <silent><C-J> :wincmd j<CR>
 nnoremap <silent><C-k> :wincmd k<CR>
 nnoremap <silent><C-L> :wincmd l<CR>
+nnoremap <silent><C-T> :botright terminal ++rows=20<CR>
 
 " presetting autocmd groups
 augroup filetype_settings
@@ -334,7 +344,7 @@ function! SetCompileOptions()
         autocmd FileType sh nnoremap <silent><space>r :AsyncRun -raw -save=1 sh $VIM_FILEPATH<CR>
         autocmd FileType go nnoremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
         autocmd FileType go nnoremap <silent><space>b :AsyncRun -save=1 go build .<CR>
-        autocmd FileType go nnoremap <silent><space>t :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go nnoremap <silent><space>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
         autocmd FileType go nnoremap <silent><space>tt :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
         autocmd FileType rust nnoremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
         autocmd FileType rust nnoremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
