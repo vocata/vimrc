@@ -283,7 +283,7 @@ let g:ale_lint_on_insert_leave=1
 let g:ale_sign_error='->'
 let g:ale_sign_warning='!'
 let g:ale_linters_explicit=1 " 显示指定文件类型使用的linter，配合g:ale_linters使用
-let g:ale_linters={'python': ['pylint'], 'c': ['clang'], 'cpp': ['clang'], 'go': ['gopls'], 'rust': ['cargo'], 'sh': ['shellcheck'], 'zsh': ['shellcheck'], 'vim': ['vint']}
+let g:ale_linters={'python': ['pylint'], 'c': ['clang'], 'cpp': ['clang'], 'go': ['gopls', 'staticcheck'], 'rust': ['cargo'], 'sh': ['shellcheck'], 'zsh': ['shellcheck'], 'vim': ['vint']}
 " linter配置
 let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
