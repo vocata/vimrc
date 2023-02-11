@@ -132,12 +132,12 @@ call SetFoldOptions()
 
 " map
 nnoremap <space><space> za
-nnoremap <silent><esc><esc> <esc>:nohls<CR>
-nnoremap <silent><C-H> :wincmd h<CR>
-nnoremap <silent><C-J> :wincmd j<CR>
-nnoremap <silent><C-k> :wincmd k<CR>
-nnoremap <silent><C-L> :wincmd l<CR>
-nnoremap <silent><C-T> :botright terminal ++rows=20<CR>
+nmap <silent><esc><esc> <esc>:nohls<CR>
+nmap <silent><C-H> :wincmd h<CR>
+nmap <silent><C-J> :wincmd j<CR>
+nmap <silent><C-k> :wincmd k<CR>
+nmap <silent><C-L> :wincmd l<CR>
+nmap <silent><C-T> :botright terminal ++rows=20<CR>
 
 " presetting autocmd groups
 augroup filetype_settings
@@ -149,8 +149,8 @@ augroup end
 " -----plug settings-----
 
 " 1. nerdtree
-nnoremap <silent><space>nl :NERDTreeFind<CR>
-nnoremap <silent><space>nt :NERDTreeToggle<CR>
+nmap <silent><space>nl :NERDTreeFind<CR>
+nmap <silent><space>nt :NERDTreeToggle<CR>
 augroup nerdtree_settings
     " start NERDTree. If a file is specified, move the cursor to its window.
     " autocmd StdinReadPre * let s:std_in=1
@@ -180,7 +180,7 @@ let g:NERDTreeWinPos='left'
 " let g:NERDTreeMinimalMenu=1
 
 " 2. undotree
-nnoremap <silent><space>ud :UndotreeToggle<CR>
+nmap <silent><space>ud :UndotreeToggle<CR>
 let g:undotree_WindowLayout=3
 let g:undotree_SetFocusWhenToggle=1
 
@@ -203,17 +203,17 @@ augroup end
 " TODO
 
 " 8. LeaderF
-noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-noremap <silent><leader>t :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
-noremap <silent><leader>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <silent><leader>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <silent><leader>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <silent><leader>h :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
-noremap <silent><leader>s :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
-noremap <silent><leader>c :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
-noremap <silent><leader>w :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
-noremap <silent><leader>a :<C-U><C-R>=printf("Leaderf rg --case-insensitive %s", "")<CR><CR>
-noremap <silent><leader>u :<C-U>Leaderf --recall<CR>
+nmap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+nmap <silent><leader>t :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+nmap <silent><leader>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+nmap <silent><leader>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+nmap <silent><leader>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+nmap <silent><leader>h :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
+nmap <silent><leader>s :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
+nmap <silent><leader>c :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
+nmap <silent><leader>w :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
+nmap <silent><leader>a :<C-U><C-R>=printf("Leaderf rg --case-insensitive %s", "")<CR><CR>
+nmap <silent><leader>u :<C-U>Leaderf --recall<CR>
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
 let g:Lf_ShowDevIcons=1
@@ -234,8 +234,8 @@ augroup end
 let g:delimitMate_expand_cr=1
 
 " 11. vim-easy-align
-xnoremap ga <plug>(EasyAlign)
-nnoremap ga <plug>(EasyAlign)
+xmap ga <plug>(EasyAlign)
+nmap ga <plug>(EasyAlign)
 
 " 12. vim-airline
 let g:airline_theme='sonokai'
@@ -257,24 +257,24 @@ let g:airline#extensions#tabline#show_tab_nr=0
 " let g:indentLine_fileType=['python', 'cpp', 'c', 'go', 'rust', 'vim', 'sh', 'zsh',]
 
 " 14. vim-smooth-scroll
-" noremap <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
-" noremap <silent><C-D> :call smooth_scroll#down(&scroll, 20, 4)<CR>
-" noremap <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 6)<CR>
-" noremap <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 6)<CR>
+" map <silent><C-U> :call smooth_scroll#up(&scroll, 20, 4)<CR>
+" map <silent><C-D> :call smooth_scroll#down(&scroll, 20, 4)<CR>
+" map <silent><C-B> :call smooth_scroll#up(&scroll*2, 20, 6)<CR>
+" map <silent><C-F> :call smooth_scroll#down(&scroll*2, 20, 6)<CR>
 
 " 15. vim-easymotion
 " TODO
 
 " 16. vim-signify
-nnoremap <silent><space>gd :SignifyHunkDiff<CR>
-nnoremap <silent><space>gu :SignifyHunkUndo<CR>
-nnoremap <silent><space>gj <plug>(signify-next-hunk)
-nnoremap <silent><space>gk <plug>(signify-prev-hunk)
+nmap <silent><space>gd :SignifyHunkDiff<CR>
+nmap <silent><space>gu :SignifyHunkUndo<CR>
+nmap <silent><space>gj <plug>(signify-next-hunk)
+nmap <silent><space>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change='#'
 
 " 17. ale
-nnoremap <silent><space>wj <plug>(ale_next_wrap)
-nnoremap <silent><space>wk <plug>(ale_previous_wrap)
+nmap <silent><space>wj <plug>(ale_next_wrap)
+nmap <silent><space>wk <plug>(ale_previous_wrap)
 let g:ale_set_highlights=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_save=1
@@ -289,16 +289,16 @@ let g:ale_c_clang_options='-Wall -O2 -std=gnu17'
 let g:ale_cpp_clang_options='-Wall -O2 -std=gnu++17'
 
 " 18. YouCompleteMe
-nnoremap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
-nnoremap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
-nnoremap <silent><space>; :rightbelow vertical YcmCompleter GoToDefinition<CR>
-nnoremap <silent><space>: :rightbelow vertical YcmCompleter GoToDeclaration<CR>
-nnoremap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
-nnoremap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
-nnoremap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
-nnoremap <silent><space>, <plug>(YCMHover)
-" nnoremap <silent><space>yfw <Plug>(YCMFindSymbolInWorkspace)
-" nnoremap <silent><space>yfd <Plug>(YCMFindSymbolInDocument)
+nmap <silent><space>] :rightbelow vertical YcmCompleter GoTo<CR>
+nmap <silent><space>[ :rightbelow vertical YcmCompleter GoToCallers<CR>
+nmap <silent><space>; :rightbelow vertical YcmCompleter GoToDefinition<CR>
+nmap <silent><space>: :rightbelow vertical YcmCompleter GoToDeclaration<CR>
+nmap <silent><space>" :rightbelow vertical YcmCompleter GoToReferences<CR>
+nmap <silent><space>? :rightbelow vertical YcmCompleter GoToDocumentOutline<CR>
+nmap <silent><space>- :rightbelow vertical YcmCompleter GoToImplementation<CR>
+nmap <silent><space>, <plug>(YCMHover)
+" nmap <silent><space>yfw <plug>(YCMFindSymbolInWorkspace)
+" nmap <silent><space>yfd <plug>(YCMFindSymbolInDocument)
 set completeopt=menu,menuone
 let g:ycm_enable_semantic_highlighting=1                            " 打开语法高亮
 let g:ycm_enable_inlay_hints=0                                      " 关闭内嵌提示
@@ -333,22 +333,22 @@ let g:asyncrun_bell=0    " 提示音开
 let g:quickfix_height=15 " quickfix窗口的高度
 let g:asyncrun_open=g:quickfix_height
 function! SetCompileOptions()
-    nnoremap <silent><space>C :AsyncStop!<CR>
-    nnoremap <silent><space>Q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
+    nmap <silent><space>C :AsyncStop!<CR>
+    nmap <silent><space>Q :call asyncrun#quickfix_toggle(g:quickfix_height)<CR>
     augroup compile_settings
-        autocmd FileType c nnoremap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType c nnoremap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp nnoremap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType cpp nnoremap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
-        autocmd FileType python nnoremap <silent><space>r :AsyncRun -raw -save=1 python3 $VIM_FILEPATH<CR>
-        autocmd FileType sh nnoremap <silent><space>r :AsyncRun -raw -save=1 sh $VIM_FILEPATH<CR>
-        autocmd FileType go nnoremap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
-        autocmd FileType go nnoremap <silent><space>b :AsyncRun -save=1 go build .<CR>
-        autocmd FileType go nnoremap <silent><space>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
-        autocmd FileType go nnoremap <silent><space>tt :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
-        autocmd FileType rust nnoremap <silent><space>b :AsyncRun -save=1 cargo build<CR>
-        autocmd FileType rust nnoremap <silent><space>c :AsyncRun -save=1 cargo check<CR>
-        autocmd FileType rust nnoremap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
+        autocmd FileType c nmap <silent><space>b :AsyncRun -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType c nmap <silent><space>r :AsyncRun -raw -save=1 gcc -std=gnu17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp nmap <silent><space>b :AsyncRun -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType cpp nmap <silent><space>r :AsyncRun -raw -save=1 g++ -std=gnu++17 -Wall -O2 $VIM_FILEPATH -o $VIM_FILEDIR/$VIM_FILENOEXT && $VIM_FILEDIR/$VIM_FILENOEXT<CR>
+        autocmd FileType python nmap <silent><space>r :AsyncRun -raw -save=1 python3 $VIM_FILEPATH<CR>
+        autocmd FileType sh nmap <silent><space>r :AsyncRun -raw -save=1 sh $VIM_FILEPATH<CR>
+        autocmd FileType go nmap <silent><space>r :AsyncRun -raw -save=1 go run .<CR>
+        autocmd FileType go nmap <silent><space>b :AsyncRun -save=1 go build .<CR>
+        autocmd FileType go nmap <silent><space>ta :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1<CR>
+        autocmd FileType go nmap <silent><space>tt :AsyncRun -save=1 go test $VIM_FILEDIR -v -cover -count=1 -run $VIM_CWORD<CR>
+        autocmd FileType rust nmap <silent><space>b :AsyncRun -save=1 cargo build<CR>
+        autocmd FileType rust nmap <silent><space>c :AsyncRun -save=1 cargo check<CR>
+        autocmd FileType rust nmap <silent><space>r :AsyncRun -raw -save=1 cargo run<CR>
     augroup end
 endfunction
 call SetCompileOptions()
@@ -357,10 +357,10 @@ call SetCompileOptions()
 let g:echodoc_enable_at_startup=1
 
 " 22. todo-vim
-nnoremap <silent><space>td :TODOToggle<CR>
+nmap <silent><space>td :TODOToggle<CR>
 
 " 23. git-blamer
-nnoremap gb :call gitblame#echo()<CR>
+nmap gb :call gitblame#echo()<CR>
 
 " 24. vim-codefmt
 augroup autoformat_settings
@@ -403,7 +403,7 @@ highlight link Searchlight Incsearch
 " TODO support icons of file
 
 " 32. markdown-preview
-nnoremap <silent><space>mp <plug>MarkdownPreviewToggle
+nmap <silent><space>mp <plug>MarkdownPreviewToggle
 
 " 33. vim-markdown
 set conceallevel=0
@@ -421,16 +421,16 @@ let g:UltiSnipsJumpBackwardTrigger='<C-K>'
 
 " 36. vim-bookmarks
 let g:bookmark_no_default_key_mappings=1
-nnoremap <silent><space>mm <Plug>BookmarkToggle
-nnoremap <silent><space>mi <Plug>BookmarkAnnotate
-nnoremap <silent><space>ma <Plug>BookmarkShowAll
-nnoremap <silent><space>mj <Plug>BookmarkNext
-nnoremap <silent><space>mk <Plug>BookmarkPrev
-nnoremap <silent><space>mc <Plug>BookmarkClear
-nnoremap <silent><space>mx <Plug>BookmarkClearAll
-nnoremap <silent><space>mg <Plug>BookmarkMoveToLine
-nnoremap <silent><space>mkk <Plug>BookmarkMoveUp
-nnoremap <silent><space>mjj <Plug>BookmarkMoveDown
+nmap <silent><space>mm <plug>BookmarkToggle
+nmap <silent><space>mi <plug>BookmarkAnnotate
+nmap <silent><space>ma <plug>BookmarkShowAll
+nmap <silent><space>mj <plug>BookmarkNext
+nmap <silent><space>mk <plug>BookmarkPrev
+nmap <silent><space>mc <plug>BookmarkClear
+nmap <silent><space>mx <plug>BookmarkClearAll
+nmap <silent><space>mg <plug>BookmarkMoveToLine
+nmap <silent><space>mkk <plug>BookmarkMoveUp
+nmap <silent><space>mjj <plug>BookmarkMoveDown
 
 " 37. vim-startify
 let g:startify_bookmarks=systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
