@@ -436,8 +436,8 @@ nmap <silent><space>mjj <plug>BookmarkMoveDown
 let g:startify_bookmarks=systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 
 " 38. vim_current_word
-highlight CurrentWord ctermbg=238
-highlight CurrentWordTwins ctermbg=238
+highlight CurrentWord cterm=underline
+highlight CurrentWordTwins cterm=underline
 augroup filetype_settings
     autocmd FileType nerdtree let b:vim_current_word_disabled_in_this_buffer=1
 augroup end
